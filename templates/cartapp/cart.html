@@ -1,0 +1,38 @@
+{% include 'home.html' %}
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+<h3>Cart List </h3>
+<form name="form" action="/orderapp/order/" method="POST" enctype="multipart/form-data" >
+{% csrf_token %}
+<table class="table table-success table-striped">
+<tr>
+	<th> Product ID </th>
+	<th> Product name </th>
+	<th> Product Image </th>
+	<th> Product quantity </th>
+	<th> Total Price </th>
+	<th></th>
+</tr>
+	{% if cart %}
+		{% for c in cart %}
+		<tr>
+			<td>{{ c.id }}</td>
+			<td>{{ c.name }}</td>
+			<td><img src="{{ c.img.url }}" height="50" width="50" alt="IG"></td>
+			<td> {{ c.productquantity }}</td>
+			<td>{{ c.totalp }}</td>
+			<td><a href="/cartapp/removeproduct/{{c.id}}">remove </td>
+		</tr>
+	{% endfor %}
+	{% endif %}
+</table>
+<input type="submit" class="btn btn-primary" value="place order">
+</div>
+</body>
+</html>	
+			
+			

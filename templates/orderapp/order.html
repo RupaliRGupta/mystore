@@ -1,0 +1,35 @@
+{% include 'home.html' %}
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<div class="container">
+<form name="form" >
+<h1> welcome ,{{ request.session.email }}</h1>
+{% csrf_token %}
+<table class="table">
+<thead class="table-dark">
+<tr>
+	<th> Order ID </th>
+	<th> Order Date </th>
+	<th> Total Amount </th>
+</tr>
+<thead>
+<tbody>
+	{% if order %}
+		{% for o in order %}
+		<tr>
+			<td>{{ o.id }}</td>
+			<td>{{ o.date }}</td>
+			<td>{{ o.amount }}</td>
+		</tr>
+	{% endfor %}
+	{% endif %}
+	</tbody>
+</table>		
+</div>
+</body>
+</html>	
+			
+			

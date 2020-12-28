@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{% include 'home.html' %}
+	<title></title>
+</head>
+<body>
+<div class="container">
+<form  name="form" method="POST" >
+{% csrf_token %}
+<h2> Bill </h2>
+<table border="4" class="table-success">
+<tr>
+<td>Customer name:</td>
+<td><input type="text" style="margin-left:20%;" placeholder="Identifiant"  value="{{fname}} {{lname}}" readonly /></td>
+</tr>
+<tr>
+<td>Address:</td>
+<td class="table-success"><input type="text" style="margin-left:20%;" size="30" placeholder="Identifiant" value="{{ address }}" readonly /></td>
+</tr>
+<tr>
+<td>Contact:</td>
+<td><input type="text" style="margin-left:20%;" placeholder="Identifiant" value="{{ contact }}"  /></td>
+</tr>
+<tr>
+<td>Total Amount:</td>
+<td><input type="text" style="margin-left:20%;" placeholder="Identifiant" value="{{ totalbill }}" /></td>
+</tr>
+</table>
+</form>
+</div>
+</body>
+</html>

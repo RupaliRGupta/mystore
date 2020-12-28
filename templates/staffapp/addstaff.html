@@ -1,0 +1,15 @@
+{% include 'home.html' %}
+<html>
+<head> 
+<title></title>
+</head>
+<body>
+<form method='POST' >
+	Name:<input type="text" id="fname" name="name" placeholder=" Enter First Name"><br/>
+	Email Address:<input type="text" id="email" name="email" placeholder="Enter Email Address"><br/>
+	Password:<input type="text" id="password" name="password" placeholder="Enter password"><br/>
+    <input type="submit" value="ADD NEW STAFF">
+{% csrf_token %}
+</form>	
+</body>
+</html>

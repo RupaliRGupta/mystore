@@ -1,0 +1,90 @@
+{% include 'home.html' %}
+{%  load static %}
+<!--<html>
+<head> 
+<title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</title>
+</head>
+<body>
+<form method='POST' enctype="multipart/form-data">
+<table>
+<h1> welcome,{{ request.session.email }} <h1>
+	<tr>
+		<th> ID </th>
+		<th> Images </th>
+		<th> name </th>
+		<th> Description </th>
+		<th> Price </th>
+		<th> discount </th>
+		<th> Total Price </th>
+	</tr>	
+	 {%  if products %}
+		{% for p in products %}
+		<tr>
+			<td>{{ p.id }}</td>
+			<td><img src="{{ p.img.url }}" height="50 width="50" alt="IG"></td>
+			<td>{{ p.name }}</td>
+			<td>{{ p.description }}</td>
+			<td>{{ p.price }}</td>
+			<td>{{ p.discount }}</td>
+			<td>{{ p.totalp }}</td>
+			<td colspan=2>
+			<a href="/productapp/updateproduct/{{ p.id }}" > update</a>
+			<a href="/productapp/deleteproduct/{{ p.id }}">Delete</a>
+			<a href="/cartapp/addToCart/{{p.id}}" > Add To Card</a>
+			</td>
+		</tr>
+	{% endfor %}
+		{% endif %}
+	</table>
+	-->
+	{% block title %}{% endblock %}
+	{% block content  %}
+	<div class="container"> 
+	<h1 class="text-center" > welcome to our website </h1>
+	<hr>
+	<div class="row mt-6">
+		{% for p in products %}
+		<div class="col-md-4">
+		 <h3>{{ p.name }}</h3>
+		 <img src={{ p.img.url }} alt="sorry" height="200 width="200">
+		 <p> <b>Price</b> : <strike>Rs. {{p.price}}</strike><b> Discount</b> : {{p.discount}} % <br/>
+		 Rs.{{p.totalp}}</p>
+		 <p> <b>Description :</b> {{p.description}}</p>
+		 {% if request.session.role == "staff" %}
+		 <a href="/productapp/updateproduct/{{ p.id }}" class="btn btn-warning" >Update</a>
+		 {% endif %}
+		 {% if request.session.role == "admin" %}
+		<a href="/productapp/deleteproduct/{{ p.id }}" class="btn btn-dark">Delete</a>
+		{% endif %}
+		{% if request.session.role == "user" %}
+		<a href="/cartapp/addToCart/{{p.id}}" class="btn btn-danger" > Add To Cart</a>
+		{% endif %}
+		</div>
+	 {% endfor %}
+	 </div> 
+	 </div>
+ {% endblock %}
+	
+	{% if products.has_other_pages %}
+  <ul class="pagination justify-content-center">
+    {% if products.has_previous %}
+      <li class="page-item" ><a class="page-link"  href="?page={{ products.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="page-item" class="disabled"><span class="page-link">&laquo;</span></li>
+    {% endif %}
+    {% for i in products.paginator.page_range %}
+      {% if products.number == i %}
+        <li  class="active" class="page-item"><span> {{ i }}  <span  class="sr-only"></span></span></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if products.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}

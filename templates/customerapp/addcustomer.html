@@ -1,0 +1,42 @@
+{% include 'home.html' %}
+<html>
+<head> 
+<title></title>
+<style>
+</style>
+</head>
+<body >
+<div class="container">
+<center>
+<form method='POST'>
+<h1> Create New Account </h1>
+<table >
+	<tr>
+	<td>First Name:</td><td><input type="text" id="fname" name="fname" placeholder=" Enter First Name"><br/><td>
+	</tr>
+	<tr>
+	<td>
+	Last Name:</td><td><input type="text" id="lname" name="lname" placeholder="Enter Last Name"><br/>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	Address:</td><td><input type="textarea" size="25" id="addresss" name="addresss" placeholder="Enter addresss"><br/></td>
+	</tr>>
+	<tr><td>
+	Email Address:</td><td><input type="email" id="email" name="email" placeholder="Enter Email Address"><br/></td>
+	</tr>
+	<tr><td>
+	Contact Number:</td><td><input type="number" id="contact" name="contact" placeholder="Enter Contact Number"><br/></td>
+	</tr>
+	<tr><td>
+	Password:</td><td><input type="password" id="password" name="password" placeholder="Enter password"><br/></td>
+	</tr>
+	</table><br>
+    <input type="submit" class="btn btn-primary" value="Sing Up">	
+{% csrf_token %} 	
+</form>
+</center>
+</div>
+</body>
+</html>

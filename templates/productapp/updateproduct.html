@@ -1,0 +1,17 @@
+{% include 'home.html' %}
+<html>
+<head> 
+<title></title>
+</head>
+<body>
+<div class="container">
+<form method='POST' enctype="multipart/form-data">
+	<table>
+	{{ form.as_table }}
+	</table>
+	<input type="submit" class="btn btn-success" value="update">
+{% csrf_token %}
+</form>
+</div>	
+</body>
+</html>

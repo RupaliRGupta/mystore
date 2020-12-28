@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<title> template</title>
+</head>
+<body>
+<!--
+<a href="/customerapp/logout/">Logout</a>
+<a href="/cartapp/cart/">cart</a>
+<a href="/orderapp/showOrder/">all Order</a>
+-->
+<ul class="nav justify-content-end" class="nav nav-pills>
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/productapp/showproduct/">Home</a>
+  </li>
+  {% if request.session.role is None %}
+  <li class="nav-item">
+    <a class="nav-link" href="/customerapp/addcustomer/">Sign Up</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/customerapp/login/">Sign In</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/staffapp/salogin/">Staff Login</a>
+  </li>
+  {% endif %}
+  {% if request.session.role == "admin" %}
+   <li class="nav-item">
+    <a class="nav-link" href="/staffapp/addStaff/">Add New STAFF</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/productapp/addproduct/">Add New Product</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="/customerapp/logout/" >Sing Out</a>
+  </li>
+  {% endif %}
+  {% if request.session.role == "user" %}
+  <li class="nav-item">
+    <a class="nav-link" href="/cartapp/cart/">My Cart</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/orderapp/showOrder/">All Order</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="/customerapp/logout/" >Sing Out</a>
+  </li>
+  {% endif %}
+  {% if request.session.role == "staff" %}
+  <li class="nav-item">
+    <a class="nav-link " href="/customerapp/logout/" >Sing Out</a>
+  </li>
+  {% endif %}
+</ul>
+</body>
+</html>
